@@ -1,0 +1,190 @@
+Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
+18/05/08 13:16:59 INFO SparkContext: Running Spark version 2.3.0
+18/05/08 13:16:59 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+18/05/08 13:16:59 ERROR Shell: Failed to locate the winutils binary in the hadoop binary path
+java.io.IOException: Could not locate executable null\bin\winutils.exe in the Hadoop binaries.
+	at org.apache.hadoop.util.Shell.getQualifiedBinPath(Shell.java:378)
+	at org.apache.hadoop.util.Shell.getWinUtilsPath(Shell.java:393)
+	at org.apache.hadoop.util.Shell.<clinit>(Shell.java:386)
+	at org.apache.hadoop.util.StringUtils.<clinit>(StringUtils.java:79)
+	at org.apache.hadoop.security.Groups.parseStaticMapping(Groups.java:116)
+	at org.apache.hadoop.security.Groups.<init>(Groups.java:93)
+	at org.apache.hadoop.security.Groups.<init>(Groups.java:73)
+	at org.apache.hadoop.security.Groups.getUserToGroupsMappingService(Groups.java:293)
+	at org.apache.hadoop.security.UserGroupInformation.initialize(UserGroupInformation.java:283)
+	at org.apache.hadoop.security.UserGroupInformation.ensureInitialized(UserGroupInformation.java:260)
+	at org.apache.hadoop.security.UserGroupInformation.loginUserFromSubject(UserGroupInformation.java:789)
+	at org.apache.hadoop.security.UserGroupInformation.getLoginUser(UserGroupInformation.java:774)
+	at org.apache.hadoop.security.UserGroupInformation.getCurrentUser(UserGroupInformation.java:647)
+	at org.apache.spark.util.Utils$$anonfun$getCurrentUserName$1.apply(Utils.scala:2464)
+	at org.apache.spark.util.Utils$$anonfun$getCurrentUserName$1.apply(Utils.scala:2464)
+	at scala.Option.getOrElse(Option.scala:121)
+	at org.apache.spark.util.Utils$.getCurrentUserName(Utils.scala:2464)
+	at org.apache.spark.SparkContext.<init>(SparkContext.scala:292)
+	at org.apache.spark.api.java.JavaSparkContext.<init>(JavaSparkContext.scala:58)
+	at mainCourseworkClasses.Coursework_2_SPARK_DataFrames_and_SQL.<clinit>(Coursework_2_SPARK_DataFrames_and_SQL.java:39)
+18/05/08 13:17:00 INFO SparkContext: Submitted application: My App
+18/05/08 13:17:00 INFO SecurityManager: Changing view acls to: User
+18/05/08 13:17:00 INFO SecurityManager: Changing modify acls to: User
+18/05/08 13:17:00 INFO SecurityManager: Changing view acls groups to: 
+18/05/08 13:17:00 INFO SecurityManager: Changing modify acls groups to: 
+18/05/08 13:17:00 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(User); groups with view permissions: Set(); users  with modify permissions: Set(User); groups with modify permissions: Set()
+18/05/08 13:17:01 INFO Utils: Successfully started service 'sparkDriver' on port 55527.
+18/05/08 13:17:01 INFO SparkEnv: Registering MapOutputTracker
+18/05/08 13:17:01 INFO SparkEnv: Registering BlockManagerMaster
+18/05/08 13:17:01 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+18/05/08 13:17:01 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+18/05/08 13:17:01 INFO DiskBlockManager: Created local directory at C:\Users\User\AppData\Local\Temp\blockmgr-381af9ce-f90c-41dd-adcb-acf96bd59f3f
+18/05/08 13:17:01 INFO MemoryStore: MemoryStore started with capacity 836.7 MB
+18/05/08 13:17:01 INFO SparkEnv: Registering OutputCommitCoordinator
+18/05/08 13:17:01 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+18/05/08 13:17:01 INFO SparkUI: Bound SparkUI to 0.0.0.0, and started at http://169.254.218.36:4040
+18/05/08 13:17:02 INFO Executor: Starting executor ID driver on host localhost
+18/05/08 13:17:02 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 55536.
+18/05/08 13:17:02 INFO NettyBlockTransferService: Server created on 169.254.218.36:55536
+18/05/08 13:17:02 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+18/05/08 13:17:02 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, 169.254.218.36, 55536, None)
+18/05/08 13:17:02 INFO BlockManagerMasterEndpoint: Registering block manager 169.254.218.36:55536 with 836.7 MB RAM, BlockManagerId(driver, 169.254.218.36, 55536, None)
+18/05/08 13:17:02 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, 169.254.218.36, 55536, None)
+18/05/08 13:17:02 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, 169.254.218.36, 55536, None)
+18/05/08 13:17:02 WARN SparkContext: Using an existing SparkContext; some configuration may not take effect.
+--- STEP 1. Movies schema ---
+root
+ |-- movieId: integer (nullable = true)
+ |-- title: string (nullable = true)
+ |-- genres: string (nullable = true)
+
+--- STEP 1. Ratings schema ---
+root
+ |-- userId: integer (nullable = true)
+ |-- movieId: integer (nullable = true)
+ |-- rating: double (nullable = true)
+ |-- timestamp: integer (nullable = true)
+
+--- STEP 3. Movie Genres schema: ---
+root
+ |-- movieId: integer (nullable = true)
+ |-- genres: string (nullable = true)
+
+--- STEP 3. Print out 50 frames of movieGenresDF transformation: order by movieId (descending) ---
++-------+------------------+
+|movieId|            genres|
++-------+------------------+
+| 176279|(no genres listed)|
+| 176275|(no genres listed)|
+| 176273|            Action|
+| 176273|             Drama|
+| 176273|          Thriller|
+| 176271|             Drama|
+| 176269|             Drama|
+| 176269|          Children|
+| 176267|             Drama|
+| 176267|           Romance|
+| 176267|            Action|
+| 176263|            Sci-Fi|
+| 176259|            Horror|
+| 176257|            Horror|
+| 176257|           Mystery|
+| 176255|           Mystery|
+| 176255|          Thriller|
+| 176255|            Horror|
+| 176253|(no genres listed)|
+| 176251|            Comedy|
+| 176251|             Drama|
+| 176249|             Crime|
+| 176249|          Thriller|
+| 176249|             Drama|
+| 176245|       Documentary|
+| 176239|           Fantasy|
+| 176239|            Comedy|
+| 176237|           Fantasy|
+| 176237|          Thriller|
+| 176237|            Action|
+| 176235|         Animation|
+| 176235|          Children|
+| 176233|(no genres listed)|
+| 176231|(no genres listed)|
+| 176229|           Fantasy|
+| 176229|            Comedy|
+| 176227|           Fantasy|
+| 176227|            Comedy|
+| 176225|           Fantasy|
+| 176223|            Sci-Fi|
+| 176223|           Fantasy|
+| 176223|            Comedy|
+| 176221|(no genres listed)|
+| 176219|            Comedy|
+| 176217|          Children|
+| 176217|             Drama|
+| 176215|             Drama|
+| 176215|           Fantasy|
+| 176215|            Horror|
+| 176213|             Drama|
++-------+------------------+
+only showing top 50 rows
+
+--- STEP 4. Print out 10 most popular genres ---
++-----------+-----------+
+|     genres|moviesCount|
++-----------+-----------+
+|      Drama|      19806|
+|     Comedy|      13002|
+|   Thriller|       6761|
+|    Romance|       6069|
+|     Action|       5775|
+|     Horror|       4448|
+|      Crime|       4247|
+|Documentary|       4122|
+|  Adventure|       3369|
+|     Sci-Fi|       2847|
++-----------+-----------+
+only showing top 10 rows
+
+--- STEP 5. Highest user ratings for 10 most popular genres ---
++-----------+------+
+|      genre|userId|
++-----------+------+
+|      Crime| 45811|
+|    Romance| 45811|
+|   Thriller| 45811|
+|  Adventure| 45811|
+|      Drama| 45811|
+|Documentary| 45811|
+|     Horror|237239|
+|     Comedy| 45811|
+|     Action| 45811|
+|     Sci-Fi| 45811|
++-----------+------+
+
+--- STEP 6. Most common genres rated by the highest raters ---
++------+------------+---------------+
+|userId|ratingsCount|mostCommonGenre|
++------+------------+---------------+
+| 45811|       18276|          Drama|
+|  8659|        9279|          Drama|
+|270123|        7638|          Drama|
+|179792|        7515|          Drama|
+|228291|        7410|          Drama|
+|243443|        6320|         Comedy|
+| 98415|        6094|          Drama|
+|229879|        6024|          Drama|
+| 98787|        5814|          Drama|
+|172224|        5701|          Drama|
++------+------------+---------------+
+
+--- STEP 7. Variance and avg rating of highest rated movies ---
++-------+-----------+----------------+
+|movieId|avg(rating)|var_samp(rating)|
++-------+-----------+----------------+
+| 130544|        5.0|             NaN|
+| 164278|        5.0|             NaN|
+| 137018|        5.0|             NaN|
+| 174655|        5.0|             NaN|
+| 151367|        5.0|             NaN|
+| 164849|        5.0|             NaN|
+| 132912|        5.0|             NaN|
+| 122701|        5.0|             NaN|
+| 152711|        5.0|             0.0|
+| 151589|        5.0|             NaN|
++-------+-----------+----------------+
+
